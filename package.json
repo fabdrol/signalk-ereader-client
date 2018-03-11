@@ -1,0 +1,34 @@
+{
+  "name": "EReaderInstruments",
+  "version": "1.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native run-ios --simulator=\"iPad (5th generation)\"",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@decipherindustries/signalk-sdk": "github:fabdrol/signalk-js-client#sdk",
+    "@signalk/nmea0183-utilities": "^0.5.0",
+    "@signalk/signalk-sdk": "github:fabdrol/signalk-js-client#sdk",
+    "lodash": "^4.17.5",
+    "react": "^16.2.0",
+    "react-native": "^0.54.1",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-jest": "^22.4.1",
+    "babel-preset-react-native": "^4.0.0",
+    "jest": "^22.4.2",
+    "react-test-renderer": "^16.2.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "standard": {
+    "globals": [
+      "fetch"
+    ]
+  }
+}
