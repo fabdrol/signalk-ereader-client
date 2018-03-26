@@ -32,7 +32,14 @@ export const metrics = {
   headingTrue: {
     input: 'rad',
     output: 'deg',
-    label: 'Heading',
+    label: 'Heading (true)',
+    unit: '°'
+  },
+
+  headingMagnetic: {
+    input: 'rad',
+    output: 'deg',
+    label: 'Heading (magnetic)',
     unit: '°'
   },
 
@@ -100,32 +107,36 @@ export const MAPPING = {
   speedOverGround: 'navigation.speedOverGround.value',
   courseOverGround: 'navigation.courseOverGroundTrue.value',
   headingTrue: 'navigation.headingTrue.value',
-  depthBelowTransducer: 'environment.depth.depthBelowTransducer.value',
-  depthBelowKeel: 'environment.depth.depthBelowKeel.value',
-  waterTemperature: 'environment.water.temperature',
-  insideTemperature: 'environment.inside.temperature',
+  depthBelowTransducer: 'environment.depth.belowTransducer.value',
+  depthBelowKeel: 'environment.depth.belowKeel.value',
+  waterTemperature: 'environment.water.temperature.value',
+  insideTemperature: 'environment.inside.temperature.value',
   time: 'environment.time',
   batteryVoltage: 'electrical.batteries.0.voltage.value',
   batteryTimeRemaining: 'electrical.batteries.0.capacity.remaining.value',
   batteryCurrent: 'electrical.batteries.0.current.value',
   batteryTemperature: 'electrical.batteries.0.temperature.value',
-  batteryStateOfCharge: 'electrical.batteries.0.capacity.stateOfCharge.value'
+  batteryStateOfCharge: 'electrical.batteries.0.capacity.stateOfCharge.value',
+  windSpeedApparent: 'environment.wind.speedApparent.value',
+  windAngleApparent: 'environment.wind.angleApparent.value',
+  windSpeedTrue: 'environment.wind.speedTrue.value',
+  windAngleTrue: 'environment.wind.angleTrue.value'
 }
 
 export const defaultState = {
   longitude: 0,
   latitude: 0,
   time: new Date().toISOString(),
-  speedThroughWater: 0,
-  speedOverGround: 0,
-  courseOverGround: 0,
-  headingTrue: 0,
-  depthBelowTransducer: 0,
-  depthBelowKeel: 0,
-  batteryVoltage: 0,
-  batteryTimeRemaining: 0,
-  batteryCurrent: 0,
-  batteryTemperature: 0,
+  speedThroughWater: -999,
+  speedOverGround: -999,
+  courseOverGround: -999,
+  headingTrue: -999,
+  depthBelowTransducer: -999,
+  depthBelowKeel: -999,
+  batteryVoltage: -999,
+  batteryTimeRemaining: -999,
+  batteryCurrent: -999,
+  batteryTemperature: -999,
   fetched: false,
   fetching: false,
   error: null
@@ -217,6 +228,7 @@ export function fetchData () {
       .API()
       .then(api => api.self())
       .then(data => {
+        console.log('GOT DATA', data)
         Object
           .keys(MAPPING)
           .forEach(key => {
@@ -238,6 +250,10 @@ function isObject (mixed) {
 }
 
 function findKey (path) {
+  if (path.indexOf('position') !== -1) {
+    console.log('PATH', path)
+  }
+
   return Object.keys(MAPPING).reduce((found, key) => {
     const mpath = MAPPING[key].replace('.value', '')
     if (mpath === path) {

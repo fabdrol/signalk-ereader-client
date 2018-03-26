@@ -106,43 +106,43 @@ const styles = StyleSheet.create({
 
   longitude: {
     position: 'absolute',
-    top: '10%',
+    top: (height - 90) * 0.1,
     left: 0,
     width: '100%',
-    height: '40%',
+    height: (height - 90) * 0.3,
     textAlign: 'center',
-    fontSize: 100,
-    lineHeight: (height - 90) * 0.4
+    fontSize: 70,
+    lineHeight: (height - 90) * 0.3
   },
 
   latitude: {
     position: 'absolute',
-    top: '50%',
+    top: (height - 90) * 0.4,
     left: 0,
     width: '100%',
-    height: '40%',
+    height: (height - 90) * 0.3,
     textAlign: 'center',
-    fontSize: 100,
-    lineHeight: (height - 90) * 0.4
+    fontSize: 70,
+    lineHeight: (height - 90) * 0.3
   },
 
   metricValue: {
     position: 'absolute',
-    top: '25%',
+    top: (height - 90) * 0.25,
     left: 0,
     width: '100%',
-    height: '40%',
+    height: (height - 90) * 0.4,
     textAlign: 'center',
-    fontSize: 230,
+    fontSize: 170,
     lineHeight: (height - 90) * 0.4
   },
 
   metricLabel: {
     position: 'absolute',
-    top: '65%',
+    top: (height - 90) * 0.65,
     left: 0,
     width: '100%',
-    height: '10%',
+    height: (height - 90) * 0.1,
     textAlign: 'center',
     fontSize: 20,
     lineHeight: (height - 90) * 0.1

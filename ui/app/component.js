@@ -20,7 +20,7 @@ export default class App extends React.Component {
         return <FullView kind='position' metrics={['longitude', 'latitude']} />
 
       case 2:
-        return <FullView kind='metric' metrics={['headingTrue']} />
+        return <FullView kind='metric' metrics={['headingTrue', 'headingMagnetic']} />
 
       case 3:
         return <FullView kind='metric' metrics={['speedThroughWater', 'speedOverGround']} />
@@ -29,10 +29,10 @@ export default class App extends React.Component {
         return <FullView kind='metric' metrics={['courseOverGround']} />
 
       case 5:
-        return <FullView kind='metric' metrics={['depthBelowKeel', 'depthBelowTransducer']} />
+        return <FullView kind='metric' metrics={['depthBelowTransducer', 'depthBelowKeel']} />
 
       case 6:
-        return <FullView kind='metric' metrics={['insideTemperature', 'waterTemperature']} />
+        return <FullView kind='metric' metrics={['waterTemperature', 'insideTemperature']} />
 
       case 'g4':
         return <GridView grid={4} />

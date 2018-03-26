@@ -67,12 +67,10 @@ export default class Navbar extends React.Component {
   }
 }
 
-const { width } = Dimensions.get('window')
 const size = 90
-
 const styles = StyleSheet.create({
   container: {
-    width,
+    width: '100%',
     height: size,
     position: 'absolute',
     left: 0,
@@ -87,7 +85,7 @@ const styles = StyleSheet.create({
   },
 
   iconWrapper: {
-    width,
+    width: '100%',
     height: size,
     flex: 1,
     flexDirection: 'column'
