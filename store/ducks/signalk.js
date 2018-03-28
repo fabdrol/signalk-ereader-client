@@ -22,6 +22,20 @@ export const metrics = {
     unit: ''
   },
 
+  windSpeedTrue: {
+    input: 'ms',
+    output: 'knots',
+    label: 'Wind speed (true)',
+    unit: ''
+  },
+
+  windSpeedApparent: {
+    input: 'ms',
+    output: 'knots',
+    label: 'Wind speed (apparent)',
+    unit: ''
+  },
+
   courseOverGround: {
     input: 'rad',
     output: 'deg',
@@ -40,6 +54,20 @@ export const metrics = {
     input: 'rad',
     output: 'deg',
     label: 'Heading (magnetic)',
+    unit: '°'
+  },
+
+  windAngleApparent: {
+    input: 'rad',
+    output: 'deg',
+    label: 'Wind angle (apparent)',
+    unit: '°'
+  },
+
+  windAngleTrue: {
+    input: 'rad',
+    output: 'deg',
+    label: 'Wind angle (true)',
     unit: '°'
   },
 
@@ -137,6 +165,11 @@ export const defaultState = {
   batteryTimeRemaining: -999,
   batteryCurrent: -999,
   batteryTemperature: -999,
+  batteryStateOfCharge: -999,
+  windSpeedApparent: -999,
+  windAngleApparent: -999,
+  windSpeedTrue: -999,
+  windAngleTrue: -999,
   fetched: false,
   fetching: false,
   error: null

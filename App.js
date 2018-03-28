@@ -1,17 +1,21 @@
 import React from 'react'
+import { AsyncStorage } from 'react-native'
 import Client from '@signalk/signalk-sdk'
 import { Provider } from 'react-redux'
 import configureStore from './store'
 import App from './ui/app'
+import config from './config'
 import { fetchData } from './store/ducks/signalk'
+import { setConnected, setLoading } from './store/ducks/router'
 
 const client = new Client({
-  hostname: '95.97.138.90',
+  hostname: 'localhost',
   port: 3000,
   useTLS: false,
   reconnect: true
 })
 
+const timeout = 500
 const store = configureStore(client)
 let poller = null
 
@@ -21,26 +25,53 @@ const pollerFn = (firstRun) => {
     poller = null
   }
 
-  if (firstRun === true) {
-    return client
-      .connect()
-      .then(() => {
-        poller = setTimeout(() => pollerFn(), 250)
-      })
-      .catch(err => {
-        console.log(`[App.js/pollerFn] First run error: ${err.message}`)
-      })
-  }
+  Promise
+    .all([
+      AsyncStorage.getItem(`${config.storageKey}/hostname`),
+      AsyncStorage.getItem(`${config.storageKey}/port`)
+    ])
+    .then(results => {
+      const hostname = results[0] || ''
+      const port = results[1] || ''
+      store.dispatch(setLoading(false))
 
-  store
-    .dispatch(fetchData())
-    .then(() => {
-      console.log(`[App.js/pollerFn] Got data...`)
-      poller = setTimeout(() => pollerFn(), 1000)
+      if (store.getState().router.connected === false && hostname !== '' && port !== '') {
+        store.dispatch(setConnected(hostname, port))
+        poller = setTimeout(() => pollerFn(true), 100)
+        return
+      }
+
+      if (store.getState().router.connected === false) {
+        poller = setTimeout(() => pollerFn(true), 100)
+        return
+      }
+
+      if (firstRun === true) {
+        return client
+          .set('hostname', store.getState().router.hostname)
+          .set('port', store.getState().router.port)
+          .connect()
+          .then(() => {
+            poller = setTimeout(() => pollerFn(), 100)
+          })
+          .catch(err => {
+            console.log(`[App.js/pollerFn] First run error: ${err.message}`)
+          })
+      }
+
+      store
+        .dispatch(fetchData())
+        .then(() => {
+          console.log(`[App.js/pollerFn] Got data...`)
+          poller = setTimeout(() => pollerFn(), timeout)
+        })
+        .catch(err => {
+          console.log(`[App.js/pollerFn] Error: ${err.message}`)
+          poller = setTimeout(() => pollerFn(), timeout)
+        })
     })
     .catch(err => {
-      console.log(`[App.js/pollerFn] Error: ${err.message}`)
-      poller = setTimeout(() => pollerFn(), 1000)
+      console.warn(`[AsyncStorage] error: ${err.message}`)
     })
 }
 

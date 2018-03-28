@@ -51,6 +51,10 @@ export default class GridMetric extends React.Component {
           value = metrics[select].value
         }
 
+        if (metric.input !== null && metric.output !== null) {
+          value = value > 0 ? utils.nmea0183.transform(value, metric.input, metric.output) : value
+        }
+
         if (value === -999) {
           value = '---'
         }
@@ -70,7 +74,6 @@ const styles = StyleSheet.create({
   nightmodeText: {
     color: 'white'
   },
-
   longitude: {
     backgroundColor: 'transparent',
     color: 'black',
@@ -85,22 +88,19 @@ const styles = StyleSheet.create({
     fontSize: 30
   },
   positionLarge: {},
-
   value: {
     backgroundColor: 'transparent',
     color: 'black',
     textAlign: 'center',
-    fontSize: 70,
-    paddingTop: 50
+    fontSize: 60,
+    paddingTop: 60
   },
-
   label: {
     backgroundColor: 'transparent',
     color: 'black',
     textAlign: 'center',
     fontSize: 20
   },
-
   valueLarge: {
     fontSize: 100,
     paddingTop: 30
