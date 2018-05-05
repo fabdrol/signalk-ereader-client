@@ -6,7 +6,7 @@ import configureStore from './store'
 import App from './ui/app'
 import config from './config'
 import { fetchData } from './store/ducks/signalk'
-import { setConnected, setLoading } from './store/ducks/router'
+import { setConnected, setLoading, setLandscape } from './store/ducks/router'
 
 const client = new Client({
   hostname: 'localhost',
@@ -79,6 +79,19 @@ const pollerFn = (firstRun) => {
 export default class AppContainer extends React.Component {
   componentWillMount () {
     pollerFn(true)
+  }
+
+  componentDidMount () {
+    AsyncStorage
+      .getItem(`${config.storageKey}/landscape`)
+      .then(direction => {
+        if (direction !== 'LEFT' && direction !== 'RIGHT') {
+          throw new Error('No valid direction set...')
+        }
+
+        store.dispatch(setLandscape(direction))
+      })
+      .catch(() => store.dispatch(setLandscape('LEFT')))
   }
 
   componentWillUnmount () {

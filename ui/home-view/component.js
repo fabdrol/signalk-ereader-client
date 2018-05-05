@@ -92,6 +92,14 @@ export default class App extends React.Component {
             {(!this.props.connected && !this.props.loading) ? null : <Text style={[ styles.pre, nightmode ? styles.preNightmode : null ]}>Server: {this.props.hostname}:{this.props.port}</Text>}
             <View style={styles.spacer} />
             <View style={styles.switchWrapper}>
+              <Text style={[ styles.switchLabel, nightmode ? styles.switchLabelNightmode : null ]}>Omdraaien</Text>
+              <Switch
+                style={styles.switchControl}
+                onValueChange={value => this.props.swapLandscape()}
+                value={this.props.landscape === 'RIGHT'}
+              />
+            </View>
+            <View style={styles.switchWrapper}>
               <Text style={[ styles.switchLabel, nightmode ? styles.switchLabelNightmode : null ]}>Nachtmodus</Text>
               <Switch
                 style={styles.switchControl}
@@ -99,6 +107,7 @@ export default class App extends React.Component {
                 value={this.props.nightmode}
               />
             </View>
+            <View style={{ width: '100%', height: 10 }} />
             <Button title='Verbinding' color={nightmode ? '#999' : '#000'} onPress={() => this.props.setView('connection')} />
             <View style={{ width: '100%', height: 10 }} />
             <Button title='Apps' color={'#999'} onPress={() => this.props.setView('apps')} />
@@ -179,7 +188,7 @@ const styles = StyleSheet.create({
   switchWrapper: {
     width: '100%',
     height: 30,
-    marginBottom: 30
+    marginBottom: 10
   },
 
   switchLabel: {
@@ -301,6 +310,6 @@ const styles = StyleSheet.create({
 
   spacer: {
     width: '100%',
-    height: '25%'
+    height: '20%'
   }
 })

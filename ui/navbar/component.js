@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     borderTopWidth: 2,
     borderTopColor: 'black',
-    backgroundColor: 'white'
+    // backgroundColor: 'white'
   },
 
   containerNightmode: {

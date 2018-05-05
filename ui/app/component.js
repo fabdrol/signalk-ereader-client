@@ -69,9 +69,15 @@ export default class App extends React.Component {
   }
 
   render () {
+    let fullHeightStyle = null
+
+    if (this.props.connected === false || this.props.view === 'home' || this.props.view === 'connection' || this.props.view === 'apps') {
+      fullHeightStyle = styles.fullHeight
+    }
+
     return (
       <View style={[ styles.container, this.props.nightmode ? styles.containerNightmode : null ]}>
-        <View style={[ styles.viewContainer, (this.props.connected === false || this.props.view === 'home' || this.props.view === 'connection' || this.props.view === 'apps') ? styles.fullHeight : null ]}>
+        <View style={[ styles.viewContainer, fullHeightStyle ]}>
           {this.view()}
         </View>
         {(this.props.connected === true && this.props.view !== 'home' && this.props.view !== 'connection' && this.props.view !== 'apps') ? <Navbar /> : null}
