@@ -15,47 +15,33 @@ export default class GridView extends React.Component {
     }
   }
 
+  shouldComponentUpdate (nextProps, nextState) {
+    const componentActiveKeys = ['g4', 'g6']
+
+    if (nextProps.connected === true && componentActiveKeys.includes(nextProps.active)) {
+      return true
+    }
+
+    return false
+  }
+
   render () {
-    let content = (
-      <View style={styles.flexWrapper}>
-        <View style={styles.flexRow}>
-          <View style={[ styles.metricSix, styles.borderBottomRight, this.props.nightmode ? { borderColor: 'white' } : null ]}>
-            <GridMetric size='small' kind='metric' label='Heading' metrics={['headingTrue']} />
-          </View>
-          <View style={[ styles.metricSix, styles.borderBottomRight, this.props.nightmode ? { borderColor: 'white' } : null ]}>
-            <GridMetric size='small' kind='metric' label='Course (over ground)' metrics={['courseOverGround']} value={0} />
-          </View>
-          <View style={[ styles.metricSix, styles.borderBottom, this.props.nightmode ? { borderColor: 'white' } : null ]}>
-            <GridMetric size='small' kind='metric' label='Depth' metrics={['depthBelowTransducer', 'depthBelowKeel']} />
-          </View>
-        </View>
-        <View style={styles.flexRow}>
-          <View style={[ styles.metricSix, styles.borderRight, this.props.nightmode ? { borderColor: 'white' } : null ]}>
-            <GridMetric size='small' kind='metric' label='Speed (over ground)' metrics={['speedOverGround']} />
-          </View>
-          <View style={[ styles.metricSix, styles.borderRight, this.props.nightmode ? { borderColor: 'white' } : null ]}>
-            <GridMetric size='small' kind='metric' label='Speed (through water)' metrics={['speedThroughWater']} />
-          </View>
-          <View style={[ styles.metricSix, this.props.nightmode ? { borderColor: 'white' } : null ]}>
-            <GridMetric size='small' kind='position' metrics={['longitude', 'latitude']} />
-          </View>
-        </View>
-      </View>
-    )
+    let content = null
+    const nightmode = this.props.nightmode
 
     if (this.props.grid === 4) {
       content = (
         <View style={styles.flexWrapper}>
           <View style={styles.flexRow}>
-            <View style={[ styles.metricFour, styles.borderBottomRight, this.props.nightmode ? { borderColor: 'white' } : null ]}>
+            <View style={[ styles.metricFour, styles.borderBottomRight, nightmode ? { borderColor: 'white' } : null ]}>
               <GridMetric size='large' kind='metric' label='Heading' metrics={['headingTrue']} />
             </View>
-            <View style={[ styles.metricFour, styles.borderBottom, this.props.nightmode ? { borderColor: 'white' } : null ]}>
+            <View style={[ styles.metricFour, styles.borderBottom, nightmode ? { borderColor: 'white' } : null ]}>
               <GridMetric size='large' kind='metric' label='Depth' metrics={['depthBelowTransducer', 'depthBelowKeel']} />
             </View>
           </View>
           <View style={styles.flexRow}>
-            <View style={[ styles.metricFour, styles.borderRight, this.props.nightmode ? { borderColor: 'white' } : null ]}>
+            <View style={[ styles.metricFour, styles.borderRight, nightmode ? { borderColor: 'white' } : null ]}>
               <GridMetric size='large' kind='metric' label='Speed (through water)' metrics={['speedThroughWater']} />
             </View>
             <View style={[ styles.metricFour ]}>
@@ -64,10 +50,37 @@ export default class GridView extends React.Component {
           </View>
         </View>
       )
+    } else {
+      content = (
+        <View style={styles.flexWrapper}>
+          <View style={styles.flexRow}>
+            <View style={[ styles.metricSix, styles.borderBottomRight, nightmode ? { borderColor: 'white' } : null ]}>
+              <GridMetric size='small' kind='metric' label='Heading' metrics={['headingTrue']} />
+            </View>
+            <View style={[ styles.metricSix, styles.borderBottomRight, nightmode ? { borderColor: 'white' } : null ]}>
+              <GridMetric size='small' kind='metric' label='Course (over ground)' metrics={['courseOverGround']} value={0} />
+            </View>
+            <View style={[ styles.metricSix, styles.borderBottom, nightmode ? { borderColor: 'white' } : null ]}>
+              <GridMetric size='small' kind='metric' label='Depth' metrics={['depthBelowTransducer', 'depthBelowKeel']} />
+            </View>
+          </View>
+          <View style={styles.flexRow}>
+            <View style={[ styles.metricSix, styles.borderRight, nightmode ? { borderColor: 'white' } : null ]}>
+              <GridMetric size='small' kind='metric' label='Speed (over ground)' metrics={['speedOverGround']} />
+            </View>
+            <View style={[ styles.metricSix, styles.borderRight, nightmode ? { borderColor: 'white' } : null ]}>
+              <GridMetric size='small' kind='metric' label='Speed (through water)' metrics={['speedThroughWater']} />
+            </View>
+            <View style={[ styles.metricSix, nightmode ? { borderColor: 'white' } : null ]}>
+              <GridMetric size='small' kind='position' metrics={['longitude', 'latitude']} />
+            </View>
+          </View>
+        </View>
+      )
     }
 
     return (
-      <View style={[ styles.container, (this.props.nightmode ? styles.nightmode : null) ]}>
+      <View style={[ styles.container, (nightmode ? styles.nightmode : null) ]}>
         {content}
       </View>
     )

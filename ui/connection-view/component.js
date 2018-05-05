@@ -79,7 +79,7 @@ export default class App extends React.Component {
   render () {
     let content = null
 
-    if (this.props.loading === false && this.state.mode !== '') {
+    if (this.props.forced === true || (this.props.loading === false && this.state.mode !== '')) {
       content = (
         <View>
           <Text style={styles.h1}>{this.state.mode === 'add' ? '+ Add new server' : 'Connect to server'}</Text>
@@ -113,12 +113,10 @@ export default class App extends React.Component {
             />
           </View>
 
-          <Button title='Connect' color='#841584' onPress={() => this.connect()} />
+          <Button title='Connect' color='#000000' onPress={() => this.connect()} />
         </View>
       )
-    }
-
-    if (this.props.loading === true) {
+    } else if (this.props.loading === true) {
       return (
         <View style={styles.container}>
           <Text style={styles.loading}>Loading...</Text>

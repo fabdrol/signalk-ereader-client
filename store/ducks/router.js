@@ -5,7 +5,7 @@ export const SET_DISCONNECTED = 'essense/router/SET_DISCONNECTED'
 export const SET_LOADING = 'essense/router/SET_LOADING'
 
 export const defaultState = {
-  view: 'compound',
+  view: 'home',
   nightmode: false,
   connected: false,
   loading: true,
@@ -46,6 +46,7 @@ export default function reducer (state = defaultState, action = {}) {
 
 export function setConnected (hostname, port) {
   return (dispatch, getState) => {
+    dispatch(setView('home'))
     dispatch({
       type: SET_CONNECTED,
       payload: {

@@ -1,3 +1,3 @@
 export default {
-  storageKey: '@skreader:0.1.2'
+  storageKey: '@skreader:1.2.0'
 }

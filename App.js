@@ -52,6 +52,7 @@ const pollerFn = (firstRun) => {
           .set('port', store.getState().router.port)
           .connect()
           .then(() => {
+            // console.warn(`Connected to: ${store.getState().router.hostname}:${store.getState().router.port}`)
             poller = setTimeout(() => pollerFn(), 100)
           })
           .catch(err => {

@@ -11,119 +11,119 @@ export const metrics = {
   speedThroughWater: {
     input: 'ms',
     output: 'knots',
-    label: 'Speed (through water)',
+    label: 'Snelheid (door het water)',
     unit: ''
   },
 
   speedOverGround: {
     input: 'ms',
     output: 'knots',
-    label: 'Speed (over ground)',
+    label: 'Snelheid (over de grond)',
     unit: ''
   },
 
   windSpeedTrue: {
     input: 'ms',
     output: 'knots',
-    label: 'Wind speed (true)',
+    label: 'Windsnelheid (waar)',
     unit: ''
   },
 
   windSpeedApparent: {
     input: 'ms',
     output: 'knots',
-    label: 'Wind speed (apparent)',
+    label: 'Windsnelheid (schijnbaar)',
     unit: ''
   },
 
   courseOverGround: {
     input: 'rad',
     output: 'deg',
-    label: 'Course (over ground)',
+    label: 'Koers (over de grond)',
     unit: '°'
   },
 
   headingTrue: {
     input: 'rad',
     output: 'deg',
-    label: 'Heading (true)',
+    label: 'Kompas (waar)',
     unit: '°'
   },
 
   headingMagnetic: {
     input: 'rad',
     output: 'deg',
-    label: 'Heading (magnetic)',
+    label: 'Kompas (magnetisch)',
     unit: '°'
   },
 
   windAngleApparent: {
     input: 'rad',
     output: 'deg',
-    label: 'Wind angle (apparent)',
+    label: 'Windrichting (schijnbaar)',
     unit: '°'
   },
 
   windAngleTrue: {
     input: 'rad',
     output: 'deg',
-    label: 'Wind angle (true)',
+    label: 'Windrichting (waar)',
     unit: '°'
   },
 
   depthBelowTransducer: {
     input: null,
     output: null,
-    label: 'Depth (below transducer)',
+    label: 'Diepgang (onder de meter)',
     unit: ''
   },
 
   depthBelowKeel: {
     input: null,
     output: null,
-    label: 'Depth (below keel)',
+    label: 'Diepgang (onder de kiel)',
     unit: ''
   },
 
   waterTemperature: {
     input: 'k',
     output: 'c',
-    label: 'Water temperature',
+    label: 'Watertemperatuur',
     unit: ''
   },
 
   insideTemperature: {
     input: 'k',
     output: 'c',
-    label: 'Inside temperature',
+    label: 'Binnentemperatuur',
     unit: ''
   },
 
   batteryVoltage: {
     input: null,
     output: null,
-    label: 'Battery (voltage)',
+    label: 'Batterij (V)',
     unit: ''
   },
 
   batteryCurrent: {
     input: null,
     output: null,
-    label: 'Battery (current)',
+    label: 'Batterij (A)',
     unit: ''
   },
 
   batteryTemperature: {
     input: null,
     output: null,
-    label: 'Battery (temperature)',
+    label: 'Batterij (°C)',
     unit: ''
   },
 
   batteryStateOfCharge: {
     input: null,
     output: null,
-    label: 'Battery (state-of-charge)',
+    label: 'Batterij (%)',
     unit: '%'
   }
 }

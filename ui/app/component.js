@@ -12,8 +12,9 @@ import {
 import Navbar from '../navbar'
 import GridView from '../grid-view'
 import FullView from '../full-view'
-// import CompoundView from '../compound-view'
+import HomeView from '../home-view'
 import ConnectionView from '../connection-view'
+import AppsView from '../apps-view'
 
 export default class App extends React.Component {
   view () {
@@ -38,28 +39,42 @@ export default class App extends React.Component {
         return <FullView kind='metric' metrics={['depthBelowTransducer', 'depthBelowKeel']} />
 
       case 6:
-        return <FullView kind='metric' metrics={['waterTemperature', 'insideTemperature']} />
+        return <FullView kind='double' metrics={['waterTemperature', 'insideTemperature']} />
 
-      // @TODO
-      // case 'compound':
-      //   return <CompoundView />
+      case 7:
+        return <FullView kind='double' metrics={['windAngleApparent', 'windSpeedApparent']} />
+
+      case 8:
+        return <FullView kind='double' metrics={['speedThroughWater', 'speedOverGround']} />
+
+      case 9:
+        return <FullView kind='double' metrics={['headingTrue', 'courseOverGround']} />
 
       case 'g4':
         return <GridView grid={4} />
 
-      // default = g6
-      default:
+      case 'g6':
         return <GridView grid={6} />
+
+      case 'connection':
+        return <ConnectionView forced />
+
+      case 'apps':
+        return <AppsView />
+
+      // default = home
+      case 'home':
+        return <HomeView />
     }
   }
 
   render () {
     return (
-      <View style={styles.container}>
-        <View style={[ styles.viewContainer, this.props.connected === false ? styles.fullHeight : null ]}>
+      <View style={[ styles.container, this.props.nightmode ? styles.containerNightmode : null ]}>
+        <View style={[ styles.viewContainer, (this.props.connected === false || this.props.view === 'home' || this.props.view === 'connection' || this.props.view === 'apps') ? styles.fullHeight : null ]}>
           {this.view()}
         </View>
-        {this.props.connected === true ? <Navbar /> : null}
+        {(this.props.connected === true && this.props.view !== 'home' && this.props.view !== 'connection' && this.props.view !== 'apps') ? <Navbar /> : null}
       </View>
     )
   }
@@ -71,6 +86,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#FFFFFF'
+  },
+
+  containerNightmode: {
+    backgroundColor: '#000'
   },
 
   viewContainer: {

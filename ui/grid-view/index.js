@@ -7,6 +7,7 @@ import { fetchData } from '../../store/ducks/signalk'
 function mapStateToProps (state, ownProps) {
   return {
     ...ownProps,
+    connected: state.router.connected,
     active: state.router.view,
     nightmode: state.router.nightmode,
     fetched: state.signalk.fetched,

@@ -15,6 +15,16 @@ export default class GridMetric extends React.Component {
     }
   }
 
+  shouldComponentUpdate (nextProps, nextState) {
+    const componentActiveKeys = ['g4', 'g6']
+
+    if (nextProps.connected === true && componentActiveKeys.includes(nextProps.active)) {
+      return true
+    }
+
+    return false
+  }
+
   swapMetric () {
     const { metrics } = this.props
     if (metrics.length === 2) {
@@ -99,7 +109,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     color: 'black',
     textAlign: 'center',
-    fontSize: 20
+    fontSize: 15
   },
   valueLarge: {
     fontSize: 100,
