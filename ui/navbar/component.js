@@ -31,17 +31,17 @@ export default class Navbar extends React.Component {
   }
 }
 
-const size = 90
+const width = 90
+const height = '100%'
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: size,
+    height: '10%',
     position: 'absolute',
     left: 0,
     bottom: 0,
     borderTopWidth: 2,
-    borderTopColor: 'black',
-    // backgroundColor: 'white'
+    borderTopColor: 'black'
   },
 
   containerNightmode: {
@@ -51,14 +51,14 @@ const styles = StyleSheet.create({
 
   iconWrapper: {
     width: '100%',
-    height: size,
+    height: height,
     flex: 1,
     flexDirection: 'column'
   },
 
   icon: {
-    width: size,
-    height: size,
+    width: width,
+    height: height,
     borderRightWidth: 2,
     borderRightColor: 'black',
     position: 'absolute',
@@ -71,18 +71,18 @@ const styles = StyleSheet.create({
 
   switchControl: {
     position: 'absolute',
-    top: 30,
+    top: 15,
     right: 15
   },
 
   p0: { left: 0 },
-  p1: { left: 1 * size },
-  p2: { left: 2 * size },
-  p3: { left: 3 * size },
-  p4: { left: 4 * size },
-  p5: { left: 5 * size },
-  p6: { left: 6 * size },
-  p7: { left: 7 * size },
+  p1: { left: 1 * width },
+  p2: { left: 2 * width },
+  p3: { left: 3 * width },
+  p4: { left: 4 * width },
+  p5: { left: 5 * width },
+  p6: { left: 6 * width },
+  p7: { left: 7 * width },
 
   p8: {
     right: 0,

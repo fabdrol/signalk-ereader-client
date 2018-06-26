@@ -9,7 +9,7 @@ import { fetchData } from './store/ducks/signalk'
 import { setConnected, setLoading, setLandscape } from './store/ducks/router'
 
 const client = new Client({
-  hostname: 'localhost',
+  hostname: '192.168.0.100',
   port: 3000,
   useTLS: false,
   reconnect: true

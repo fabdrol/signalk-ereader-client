@@ -27,7 +27,7 @@ export default class App extends React.Component {
         return <FullView kind='position' metrics={['longitude', 'latitude']} />
 
       case 2:
-        return <FullView kind='metric' metrics={['headingTrue', 'headingMagnetic']} />
+        return <FullView kind='metric' metrics={['headingMagnetic', 'headingTrue']} />
 
       case 3:
         return <FullView kind='metric' metrics={['speedThroughWater', 'speedOverGround']} />
@@ -36,7 +36,7 @@ export default class App extends React.Component {
         return <FullView kind='metric' metrics={['courseOverGround']} />
 
       case 5:
-        return <FullView kind='metric' metrics={['depthBelowTransducer', 'depthBelowKeel']} />
+        return <FullView kind='metric' metrics={['depthBelowTransducer']} />
 
       case 6:
         return <FullView kind='double' metrics={['waterTemperature', 'insideTemperature']} />
@@ -48,7 +48,7 @@ export default class App extends React.Component {
         return <FullView kind='double' metrics={['speedThroughWater', 'speedOverGround']} />
 
       case 9:
-        return <FullView kind='double' metrics={['headingTrue', 'courseOverGround']} />
+        return <FullView kind='double' metrics={['headingMagnetic', 'courseOverGround']} />
 
       case 'g4':
         return <GridView grid={4} />
@@ -86,7 +86,6 @@ export default class App extends React.Component {
   }
 }
 
-const { height } = Dimensions.get('window')
 const styles = StyleSheet.create({
   container: {
     width: '100%',
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     width: '100%',
-    height: (height - 90)
+    height: '90%'
   },
 
   fullHeight: {

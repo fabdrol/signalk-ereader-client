@@ -14,7 +14,7 @@ export const defaultState = {
   nightmode: false,
   connected: false,
   loading: true,
-  hostname: '95.97.138.90',
+  hostname: '192.168.0.100',
   port: 3000,
   landscape: 'LEFT'
 }

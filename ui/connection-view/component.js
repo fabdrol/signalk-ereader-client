@@ -26,9 +26,7 @@ export default class App extends React.Component {
       port: '',
       defaultServer: false,
       common: [
-        { key: 'l0', kind: 'server', label: 'X-Miles', hostname: '192.168.1.1', port: 3000 },
-        { key: 'l1', kind: 'server', label: 'Signalk.org', hostname: 'demo.signalk.org', port: 80 },
-        { key: 'l3', kind: 'server', label: 'Decipher HQ', hostname: '95.97.138.90', port: 3000 },
+        { key: 'l0', kind: 'server', label: 'X-Miles', hostname: '192.168.0.100', port: 3000 },
         { key: 'l4', kind: 'add', label: '+ Add new server' }
       ]
     }

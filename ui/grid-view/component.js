@@ -34,10 +34,10 @@ export default class GridView extends React.Component {
         <View style={styles.flexWrapper}>
           <View style={styles.flexRow}>
             <View style={[ styles.metricFour, styles.borderBottomRight, nightmode ? { borderColor: 'white' } : null ]}>
-              <GridMetric size='large' kind='metric' label='Heading' metrics={['headingTrue']} />
+              <GridMetric size='large' kind='metric' label='Heading' metrics={['headingMagnetic']} />
             </View>
             <View style={[ styles.metricFour, styles.borderBottom, nightmode ? { borderColor: 'white' } : null ]}>
-              <GridMetric size='large' kind='metric' label='Depth' metrics={['depthBelowTransducer', 'depthBelowKeel']} />
+              <GridMetric size='large' kind='metric' label='Depth' metrics={['depthBelowTransducer']} />
             </View>
           </View>
           <View style={styles.flexRow}>
@@ -55,13 +55,13 @@ export default class GridView extends React.Component {
         <View style={styles.flexWrapper}>
           <View style={styles.flexRow}>
             <View style={[ styles.metricSix, styles.borderBottomRight, nightmode ? { borderColor: 'white' } : null ]}>
-              <GridMetric size='small' kind='metric' label='Heading' metrics={['headingTrue']} />
+              <GridMetric size='small' kind='metric' label='Heading' metrics={['headingMagnetic']} />
             </View>
             <View style={[ styles.metricSix, styles.borderBottomRight, nightmode ? { borderColor: 'white' } : null ]}>
               <GridMetric size='small' kind='metric' label='Course (over ground)' metrics={['courseOverGround']} value={0} />
             </View>
             <View style={[ styles.metricSix, styles.borderBottom, nightmode ? { borderColor: 'white' } : null ]}>
-              <GridMetric size='small' kind='metric' label='Depth' metrics={['depthBelowTransducer', 'depthBelowKeel']} />
+              <GridMetric size='small' kind='metric' label='Depth' metrics={['depthBelowTransducer']} />
             </View>
           </View>
           <View style={styles.flexRow}>
